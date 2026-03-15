@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body >
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <h1 style="padding: 300px;"></h1>
+</body>
+<script>
+    const randomColor = function(){
+        const hex = "0123456789ABCDEF";
+        let col = '#';
+        for(let i =0;i<6;i++){
+            col += hex[Math.floor(Math.random() * 16)];
+        }
+        console.log(`${col}`);
+        document.querySelector('h1').innerHTML = col;
+        return col;
+    }
+    let intervalId;
+    document.querySelector('#start').addEventListener('click',()=>{
+        if(!intervalId){
+            intervalId = setInterval(changeColor,1000);
+            console.log("Start Clicked");
+        }
+        function changeColor () {
+            document.body.style.backgroundColor = randomColor();
+        };
+    });
+    document.querySelector('#stop').addEventListener('click',()=>{
+        clearInterval(intervalId);
+        intervalId = null;
+    });
+    
+</script>
+</html>
